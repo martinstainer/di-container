@@ -1,48 +1,55 @@
-simple dependency injection container with lazy injections and circular depenendency checking
+# Simple DI Container
+simple dependency injection container with lazy injection and circular dependency detecting
 
 ## example
 ```
-class A {}
+class Sugar {}
 
-class B 
+class Coffee {}
+
+class Milch {} 
+
+class MyFavoriteCoffee
 {
 
-  private $a;
+  private $sugar;
+  private $coffee;
+  private $milch;
 
-  public function__construct(A $a) 
+  public function __construct(Sugar $sugar, Milch $milch, Coffee $coffee) 
   {
-      $this->a = $a;
+      $this->sugar = $sugar;
+      $this->milch = $milch;
+      $this->coffee = $coffeee;
   }
-
-}
-
-class C 
-{
-
-  private $a;
-  private $b;
-
-  public function__construct(A $a, B $b) 
+  
+  public function drink()
   {
-      $this->a = $a;
-      $this->b = $b;
   }
 
 }
 
 $container = new Container;
 
-$container['A'] = function() {
-    return new A;
+$container['myFavCoffee'] = function($c) {
+    return new MyFavoriteCoffee($c['sugar'], $c['milch'], $c['coffee']);
 };
 
-$container['B'] = function($c) {
-    return new B($c['A']);
+$container['sugar'] = function() {
+    return new Sugar;
 };
 
-$container['C'] = function($c) {
-    return new C($c['A'], $c['B']);
+$container['coffee'] = function() {
+    return new coffee;
 };
+
+$container['milch'] = function() {
+    return new coffee;
+};
+
+$container['myFavCoffee']->drink();
+
+
 ```
 
 
