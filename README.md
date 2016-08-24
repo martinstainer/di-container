@@ -1,5 +1,5 @@
 # Simple DI Container
-simple dependency injection container with lazy injection and circular dependency detecting
+simple dependency injection container with lazy injection and circular dependency detection
 
 ## example
 ```
@@ -40,11 +40,11 @@ $container['sugar'] = function() {
 };
 
 $container['coffee'] = function() {
-    return new coffee;
+    return new Coffee;
 };
 
 $container['milch'] = function() {
-    return new coffee;
+    return new Milch;
 };
 
 $container['myFavCoffee']->drink();
